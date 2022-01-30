@@ -4,9 +4,11 @@ const app = express();//asigning instance to app
 
 const errorMiddleWare=require('./middleware/error')
 
+const cookieParser=require('cookie-parser')
 
 app.use(express.json());//stating which format is used 
 
+app.use(cookieParser())
 //Importing  routes for config 
 
 const products=require('./routes/products');

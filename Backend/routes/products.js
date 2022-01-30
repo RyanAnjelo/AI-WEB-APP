@@ -2,22 +2,24 @@
     const { route } = require('../app');
 
     const router=express.Router();
-
+     
     const {getProducts,newProduct,getSingleProduct,updateProducts,deleteProduct}=require('../controllers/products')
 
+    const {isAuthenticatedUser,authorizationOfRoles}=require('../middleware/authenticateRoutes');
+    
     //Get req
 
-    router.route('/products').get(getProducts);//all products being loaded
+    router.route('/products').get(isAuthenticatedUser,authorizationOfRoles('admin'),getProducts);//all products being loaded
 
     router.route('/product/:id').get(getSingleProduct);// single product being obtained
 
     //PUT req
-    router.route('/admin/product/:id').put(updateProducts); //update product 
-    router.route('/admin/product/:id').put(updateProducts).delete(deleteProduct); //delete product
+    router.route('/admin/product/:id').put(isAuthenticatedUser,updateProducts); //update product 
+    router.route('/admin/product/:id').put(isAuthenticatedUser,updateProducts).delete(isAuthenticatedUser,deleteProduct); //delete product
     
     //Post req
 
-    router.route('/admin/product/new').post(newProduct);// new product being added
+    router.route('/admin/product/new').post(isAuthenticatedUser,newProduct);// new product being added
 
 
 
