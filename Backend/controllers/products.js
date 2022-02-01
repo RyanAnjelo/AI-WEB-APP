@@ -1,6 +1,5 @@
             
             //Importing modules to be used 
-            const product = require('../models/product');
             const Product = require('../models/product');
             const ErrorHandler=require('../utils/errorHandler');
             const catchAysncErrors=require('../middleware/asyncError');
@@ -8,6 +7,7 @@
             
             //add new products => /api/v1/admin/product/new
             exports.newProduct = catchAysncErrors( async(req,res,next)=>{
+                req.body.user = req.user.id;
                 const product= await Product.create(req.body);//creating product from the data in body
                 res.status(201).json({
                     success:true,
