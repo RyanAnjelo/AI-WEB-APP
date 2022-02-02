@@ -1,5 +1,4 @@
 const ErrorHandler = require('../utils/ErrorHandler');
-const errorHandler=require('../utils/ErrorHandler');
 
 module.exports=(err,req,res,next) =>{
     err.statusCode = err.statusCode || 500;
@@ -27,7 +26,7 @@ module.exports=(err,req,res,next) =>{
         // Handling mongoose validatiom error
         if (err.name === 'ValidationError') {
             const message = Object.values(err.errors).map(value=>value.message);
-            error = new errorHandler(message,400)
+            error = new ErrorHandler(message,400)
 
             error = new ErrorHandler(message, 400)
         }
@@ -37,6 +36,7 @@ module.exports=(err,req,res,next) =>{
             const message = `Duplicate ${Object.keys(err.keyValue)} entered`
             error = new ErrorHandler(message, 400)
         }
+        
 
         // Handling wrong JWT error
         if (err.name === 'JsonWebTokenError') {
