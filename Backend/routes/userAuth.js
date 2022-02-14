@@ -5,7 +5,8 @@ const router=express.Router();
 const {
     registerUser,loginUser,logout, forgotPassword,
     resetPassword, getUserProfile,updatePassword,
-    updateProfile,getAllUsers,getUserDetials
+    updateProfile,getAllUsers,getUserDetials,
+    updateAdminProfile,deleteUsers
     }=require('../controllers/authentication');
 
 const {isAuthenticatedUser,authorizationOfRoles}=require('../middleware/authenticateRoutes');
@@ -21,6 +22,8 @@ router.route('/password/update').put(isAuthenticatedUser,updatePassword);
 router.route('/profile/update').put(isAuthenticatedUser,updateProfile);
 router.route('/admin/getAllUsers').get(isAuthenticatedUser,authorizationOfRoles('admin'),getAllUsers);
 router.route('/admin/user/:id').get(isAuthenticatedUser,authorizationOfRoles('admin'),getUserDetials);
+router.route('/admin/profile/update/:id').put(isAuthenticatedUser,authorizationOfRoles('admin'),updateAdminProfile);
+router.route('/admin/delete/user/:id').delete(isAuthenticatedUser,authorizationOfRoles('admin'),deleteUsers);
 
 
 module.exports=router;

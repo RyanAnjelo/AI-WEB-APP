@@ -199,3 +199,36 @@ exports.getUserDetials= catchAsyncErrors(async (req,res,next)=>{
         user
     })
 })
+// admin update profile 
+exports.updateAdminProfile = catchAsyncErrors(async (req, res, next) => {
+    // Create model for containing data 
+     const newUserData = {
+         name: req.body.name,
+         email: req.body.email,
+         role:req.body.role
+     }
+ 
+     // Update the profile
+     const user= await userAuth.findByIdAndUpdate(req.params.id, newUserData,{
+         new:true,
+         runValidators:true,
+         useFindAndModify:false
+     })
+     res.status(200).json({
+         success:true
+     })
+ })
+ //Delete Users access
+ exports.deleteUsers= catchAsyncErrors(async (req,res,next)=>{
+    const user= await userAuth.findById(req.params.id);
+    if(!user){
+        return next(new ErrorHandler('user doesnt exits'),404);
+    }
+
+    await user.remove();//remove user
+    
+    res.status(200).json({
+        sucess:true,
+        user
+    })
+})
