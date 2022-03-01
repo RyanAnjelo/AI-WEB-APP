@@ -15,8 +15,7 @@ router.route('/order/:id').get(isAuthenticatedUser,getOrderDetails);
 router.route('/orders/my').get(isAuthenticatedUser,myOrders);
 router.route('/admin/orders/total').get(isAuthenticatedUser,authorizationOfRoles('admin'),getAllOrders);
 router.route('/admin/order/process/:id').put(isAuthenticatedUser,authorizationOfRoles('admin'),updateDeliveryStatus);
-//router.route('/admin/order/:id').put(isAuthenticatedUser,authorizationOfRoles('admin'),updateOrder);
-//router.route('/admin/orders/delete').get(isAuthenticatedUser,authorizationOfRoles('admin'),deleteOrder);
+router.route('/admin/order/:id').delete(isAuthenticatedUser,authorizationOfRoles('admin'),deleteOrder);
 
 
 
