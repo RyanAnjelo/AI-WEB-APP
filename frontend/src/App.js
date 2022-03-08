@@ -11,14 +11,12 @@ function App() {
     <Router>
     <div className="App">
      <Header/>
-    
      <div className="container container-fluid">
-     <Routes>
+       <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/product/:id" element={<ProductDetails/>}  />
-    </Routes>
+            </Routes>
         </div>
-    
      <Footer/>
     </div>
     </Router>

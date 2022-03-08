@@ -13,8 +13,6 @@ const options = {
   transition: transitions.SCALE
 }
 
-
-
 ReactDOM.render(
 
   <Provider store={store}>

@@ -16,7 +16,7 @@
 
     router.route('/products').get(getProducts);//all products being loaded
 
-    router.route('/product/:id').get(isAuthenticatedUser,getSingleProduct);// single product being obtained
+    router.route('/product/:id').get(getSingleProduct);// single product being obtained
     router.route('/reviews').get(isAuthenticatedUser, getProductReviews);//get all reviews of a product
 
     //PUT req

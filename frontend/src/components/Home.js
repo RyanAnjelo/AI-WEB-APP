@@ -6,6 +6,7 @@ import Product from './products/Products'
 import Loader from './layouts/Loader'
 import { useAlert } from 'react-alert'
 
+
 const Home = () => {
   
   const dispatch= useDispatch();
