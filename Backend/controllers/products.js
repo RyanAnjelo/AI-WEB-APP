@@ -17,26 +17,34 @@
             })
 
             //get all products => /api/v1/products
-                exports.getProducts= catchAysncErrors ( async (req,res,next) =>{
-                    
-                    const resPerPage=10;
-                    const productsCount= await Product.countDocuments();
-                    const apiFeatures = new APIFeatures(Product.find(), req.query)
+            
+            exports.getProducts = catchAysncErrors(async (req, res, next) => {
+
+                const resPerPage = 8;
+                const productsCount = await Product.countDocuments();
+            
+                const apiFeatures = new APIFeatures(Product.find(), req.query)
                     .search()
                     .filter()
-                    .pagination(resPerPage)
-                    let products = await apiFeatures.query;
-                    let filteredProductsCount = products.length;
-                
-                    apiFeatures.pagination(resPerPage);
+            
+                let products = await apiFeatures.query;
+                let filteredProductsCount = products.length;
+            
+                apiFeatures.pagination(resPerPage)
+                products = await apiFeatures.query;
+            
+            
                 res.status(200).json({
-                    success:true,
+                    success: true,
                     productsCount,
+                    resPerPage,
+                    filteredProductsCount,
                     products
                 })
-
-               
-                })
+            
+            })
+            
+            
             // Get single Product data => /api/v1/product/id:
             exports.getSingleProduct= catchAysncErrors ( async(req,res,next) =>{
                 const product= await Product.findById(req.params.id);

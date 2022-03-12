@@ -24,34 +24,36 @@ const ProductDetails=()=>{
     return ( 
     
     <Fragment>
-        
+        {loading ? <Loader>Loading ...</Loader>:(
         <Fragment>
-         <MetaData title={params.id.name} />
+         <MetaData title={product.name} />
          <div class="container container-fluid">
         <div class="row f-flex justify-content-around">
-            <div class="col-12 col-lg-5 img-fluid" id="product_image">
-            <Carousel pause='hover'>
-                {product.images && product.images.map(image =>{
-                    <Carousel.Item key={image.public_id}>
-                        <img className="" src={image.url} alt={product.title}/>
-                    </Carousel.Item>
-                })}
-            </Carousel>
-            </div>
+
+        <div className="col-12 col-lg-5 img-fluid" id="product_image">
+                            <Carousel pause='hover' >
+                                {product.images && product.images.map(image => (
+                                    <Carousel.Item key={image.public_id}>
+                                        <img className="d-block w-100 h-20" src={image.url} alt={product.title} />
+                                    </Carousel.Item>
+                                ))}
+                            </Carousel>
+                        </div>
+                      
             <div class="col-12 col-lg-5 mt-5">
                 <h3>{product.name}</h3>
-                <p id="product_id">{product.id}</p>
+                <p id="product_id">{product._id}</p>
 
                 <hr/>
 
                 <div class="rating-outer">
-                    <div class="rating-inner"></div>
+                <div className="rating-inner" style={{ width: `${(product.ratings / 5) * 100}%` }}></div>
                 </div>
-                <span id="no_of_reviews">(5 Reviews)</span>
+                <span id="no_of_reviews">{product.numOfReviews} Reviews</span>
 
                 <hr/>
 
-                <p id="product_price">$108.00</p>
+                <p id="product_price">${product.price}</p>
                 <div class="stockCounter d-inline">
                     <span class="btn btn-danger minus">-</span>
 
@@ -117,7 +119,7 @@ const ProductDetails=()=>{
     </div>
     </div>
         </Fragment>
-    
+        )}
    </Fragment>
     
 

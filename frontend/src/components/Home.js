@@ -1,26 +1,35 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect , useState } from 'react'
 import MetaData from './layouts/MetaData'
 import { useDispatch , useSelector } from 'react-redux'
 import { getProducts } from '../actions/products'
 import Product from './products/Products'
 import Loader from './layouts/Loader'
 import { useAlert } from 'react-alert'
+import Pagination from "react-js-pagination";
+import {useParams} from 'react-router-dom'
 
 
 const Home = () => {
   
+
+  const [currentPage,setCurrentPage]=useState(1);
+  let params=useParams();
   const dispatch= useDispatch();
   const alert=useAlert();
-  const {loading,products,error,productsCount}= useSelector(state=>state.products)
+  const {loading,products,error,productsCount,resPerPage,filteredProductsCount }= useSelector(state=>state.products)
+  const keyword=params.keyword;
+
   useEffect (()=>{
     if(error){
-     
       return alert.error('error');
     }
-    dispatch(getProducts());
-    
+    dispatch(getProducts(keyword,currentPage));
+  },[dispatch,alert,error,currentPage])
+  
+  function setCurrentPageNo(pageNumber) {
+    setCurrentPage(pageNumber)
+}
 
-  },[dispatch,alert,error])
   return (
     <Fragment>
     {loading ? <Loader>Loading ...</Loader>:(
@@ -34,6 +43,20 @@ const Home = () => {
       ))}   
       </div>
       </section>
+      <div className="d-flex justify-content-center mt-5">
+                            <Pagination
+                                activePage={currentPage}
+                                itemsCountPerPage={resPerPage}
+                                totalItemsCount={productsCount}
+                                onChange={setCurrentPageNo}//sets current page no as it changes for state management
+                                nextPageText={'Next'}
+                                prevPageText={'Prev'}
+                                
+                                itemClass="page-item"
+                                linkClass="page-link"
+                            />
+                        </div>
+                    
     </Fragment>
     
     

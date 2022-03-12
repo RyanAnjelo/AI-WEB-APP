@@ -1,4 +1,3 @@
-
 import {
     ALL_PRODUCTS_FAIL,
     ALL_PRODUCTS_REQUEST,
@@ -22,7 +21,7 @@ export const productsReducer = (state = { products: [] }, action) => {
                 products: action.payload.products,
                 productsCount: action.payload.productsCount,
                 resPerPage: action.payload.resPerPage,
-                filteredProductsCount: action.payload.filteredProductsCount
+               // filteredProductsCount: action.payload.filteredProductsCount
             }
 
         // case ADMIN_PRODUCTS_SUCCESS:
@@ -57,6 +56,7 @@ export const productsReducer = (state = { products: [] }, action) => {
                 return {
                     ...state,
                     loading: true
+                    
                 }
     
             case PRODUCT_DETAILS_SUCCESS:

@@ -1,29 +1,24 @@
-import React, { Fragment } from 'react'
+import React, { Fragment  } from 'react'
+import Search from './Search'
+import {Route, useNavigate,Routes, Router} from 'react-router-dom'
 
 const Header = () => {
+
   return (
     <Fragment>
+     
          <nav className="navbar row">
       <div className="col-12 col-md-3">
         <div className="navbar-brand">
-          <img src="./imgs/logos.png" />
+          <img src="./imgs/logos.png" style={{width:'80px',height:'70px'}}/>
         </div>
       </div>
 
       <div className="col-12 col-md-6 mt-2 mt-md-0">
-        <div className="input-group">
-          <input
-            type="text"
-            id="search_field"
-            className="form-control"
-            placeholder="Enter Product Name ..."
-          />
-          <div className="input-group-append">
-            <button id="search_btn" class="btn">
-              <i className="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
+        <Routes> 
+          <Route path='/search/:keyword' element={<Search />} />
+          </Routes>
+     
       </div>
 
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
@@ -33,6 +28,7 @@ const Header = () => {
         <span className="ml-1" id="cart_count">2</span>
       </div>
     </nav>
+    
     </Fragment>
   )
 }
