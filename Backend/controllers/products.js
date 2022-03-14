@@ -43,8 +43,6 @@
                 })
             
             })
-            
-            
             // Get single Product data => /api/v1/product/id:
             exports.getSingleProduct= catchAysncErrors ( async(req,res,next) =>{
                 const product= await Product.findById(req.params.id);

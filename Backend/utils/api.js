@@ -8,27 +8,25 @@ class APIFeatures {
         const keyword = this.queryStr.keyword ? {
             name: {
                 $regex: this.queryStr.keyword,
-                $options: 'i'//case insesntive search 
+                $options: 'i'
             }
         } : {}
-        //console.log(keyword);
+
         this.query = this.query.find({ ...keyword });
         return this;
-        
     }
 
     filter() {
 
         const queryCopy = { ...this.queryStr };
 
-        // Removing fields from the query 
+        // Removing fields from the query
         const removeFields = ['keyword', 'limit', 'page']
-        removeFields.forEach(el => delete queryCopy[el]);//remove feilds like keyword ,
-        //sice when selecting something specailly a category a keyword is not send to db 
+        removeFields.forEach(el => delete queryCopy[el]);
 
-        //filtering for product features such as ratings , price and etc 
+        // Advance filter for price, ratings etc
         let queryStr = JSON.stringify(queryCopy)
-        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)//using regex to paass data to db mongo with $
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
 
 
         this.query = this.query.find(JSON.parse(queryStr));
@@ -36,9 +34,10 @@ class APIFeatures {
     }
 
     pagination(resPerPage) {
-        const currentPage = Number(this.queryStr.page) || 1;// if prodcuts are less displayed in one pg
-        const skip = resPerPage * (currentPage - 1);// skipping products when selecting pg
-        this.query = this.query.limit(resPerPage).skip(skip);// Skipping more eg: 10 prd 
+        const currentPage = Number(this.queryStr.page) || 1;
+        const skip = resPerPage * (currentPage - 1);
+
+        this.query = this.query.limit(resPerPage).skip(skip);
         return this;
     }
 }
