@@ -1,6 +1,6 @@
 import React, { Fragment  } from 'react'
 import Search from './Search'
-import {Route, useNavigate,Routes, Router} from 'react-router-dom'
+import {Route, useNavigate,Routes, Router, Link} from 'react-router-dom'
 
 const Header = () => {
 
@@ -10,7 +10,7 @@ const Header = () => {
          <nav className="navbar row">
       <div className="col-12 col-md-3">
         <div className="navbar-brand">
-          <img src="./imgs/logos.png" style={{width:'80px',height:'70px'}}/>
+          <img src="./imgs/logo.png" style={{width:'190px',height:'55px'}}/>
         </div>
       </div>
 
@@ -18,7 +18,7 @@ const Header = () => {
       <Search />
       </div>
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-        <button className="btn" id="login_btn">Login</button>
+        <Link to="/login" className="btn ml-4" id="login_btn">Login</Link>
 
         <span id="cart" className="ml-3">Cart</span>
         <span className="ml-1" id="cart_count">2</span>

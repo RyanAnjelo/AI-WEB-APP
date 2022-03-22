@@ -4,23 +4,40 @@ const catchAsyncErrors=require('../middleware/asyncError');
 const tokenSend = require('../utils/jwtToken');
 const sendEmail=require('../utils/sendEmail');
 const crypto=require('crypto');
-
+const cloudinary=require('cloudinary');
 //Steps to register the user in a much secure way 
 
-exports.registerUser=catchAsyncErrors( async(req,res,next)=>{
-    const{name, email , password}=req.body;//get the user enetered detials in body 
-    const user= await userAuth.create({// add them into the db
+exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+
+    //const file = req.files.image;
+    // const result =  await cloudinary.uploader.upload(file.tempFilePath, {
+    //     folder: 'avatar',
+    //     width: 150,
+    //     crop: "scale"
+    // })
+    
+    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: 'avatars',
+        width: 150,
+        crop: "scale"
+    })
+
+    const { name, email, password } = req.body;
+
+    const user = await userAuth.create({
         name,
         email,
         password,
-        avator:{
-            public_id:'',
-            urL:''
+        avatar: {
+            public_id: result.public_id,
+            url: result.secure_url
         }
     })
-    //pass cookie token
-    tokenSend(user,200,res)
+
+    sendToken(user, 200, res)
+
 })
+ 
 // checking creditionals before Login users
 exports.loginUser=catchAsyncErrors(async(req,res,next)=>{
 const {email,password}=req.body;// get user creditionals from body 

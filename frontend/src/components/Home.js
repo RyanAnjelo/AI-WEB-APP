@@ -138,7 +138,7 @@ const Home = () => {
    
       {products.map(product => (
       <Product key={product._id} product={product} col={4} style={{innerHeight:50,outerHeight:50}} />
-      ))}   
+      ))}
       
       </div>
       </section>
