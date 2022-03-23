@@ -2,7 +2,7 @@ const app = require('./app')
 const connectDatabase = require('./config/db')
 
 const dotenv = require('dotenv');
-const cloudinary = require('cloudinary')
+const cloudinary = require('cloudinary').v2
 
 // Handle Uncaught exceptions
 process.on('uncaughtException', err => {

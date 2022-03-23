@@ -6,7 +6,10 @@ import {
     CLEAR_ERRORS,
     SIGNUP_FAIL,
     SIGNUP_SUCCESS,
-    SIGNUP_REQUEST
+    SIGNUP_REQUEST,
+    LOAD_USER_REQUEST,
+    LOAD_USER_SUCCESS,
+    LOAD_USER_FAIL
 
 } from '../constants/user.js' 
 
@@ -58,11 +61,34 @@ export const userRegister = (userData) => async (dispatch) => {
         dispatch({
             type: SIGNUP_FAIL,
             payload: error.response.data.message
+            
         })
+        console.log(error.response)
     }
 }
 
+// Load user
+export const loadUser = () => async (dispatch) => {
+    try {
 
+        dispatch({ type: LOAD_USER_REQUEST })
+
+        const { data } = await axios.get('/api/v1/profile')
+        console.log(data.logedUser);
+
+        dispatch({
+            type: LOAD_USER_SUCCESS,
+            payload: data.logedUser,
+            
+        })
+
+    } catch (error) {
+        dispatch({
+            type: LOAD_USER_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
 export const clearErrors = () => async (dispatch) => {
     dispatch({
         type: CLEAR_ERRORS

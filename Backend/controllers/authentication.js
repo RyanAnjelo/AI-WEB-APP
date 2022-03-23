@@ -33,8 +33,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
             url: result.secure_url
         }
     })
-
-    sendToken(user, 200, res)
+    console.log(req.body);
+    tokenSend(user, 200, res)
 
 })
  

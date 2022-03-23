@@ -6,6 +6,7 @@ module.exports=(err,req,res,next) =>{
     //Seperating error messages based on user
     //Dev mode
     if(process.env.NODE_ENV==='DEVELOPMENT'){
+        console.log(err)
         res.status(err.statusCode).json({
             sucess:false,
             error:err,

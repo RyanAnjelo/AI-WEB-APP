@@ -4,7 +4,7 @@ import {useAlert} from 'react-alert'
 import MetaData from '../layouts/MetaData'
 
 import {userRegister, clearErrors} from '../../actions/users'
-import { useNavigate ,useParams} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const Register = ( ) => {
