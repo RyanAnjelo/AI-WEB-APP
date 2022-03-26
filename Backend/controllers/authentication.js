@@ -68,7 +68,7 @@ exports.logout=catchAsyncErrors(async(req,res,next)=>{
     })
 
 })
-
+    
 // Password token send for reset by mail
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
@@ -144,17 +144,6 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 })
 
 // get current logged in user details
-
-exports.getUserProfile=catchAsyncErrors(async (req,res,next)=>{
-
-    const logedUser= await userAuth.findById(req.user.id);// obtain loged in user id 
-    
-    res.status(200).json({
-        success:true,
-        logedUser
-    })
-
-})
 // Change user password 
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
     const user = await userAuth.findById(req.user.id).select('+password');// obtain password 
@@ -171,24 +160,45 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
     tokenSend(user, 200, res)
 
 })
-// Update the profile of user 
+
+
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
-   // Create model for containing data 
     const newUserData = {
         name: req.body.name,
         email: req.body.email
     }
 
-    // Update the profile
-    const user= await userAuth.findByIdAndUpdate(req.user.id, newUserData,{
-        new:true,
-        runValidators:true,
-        useFindAndModify:false
+    // Update avatar
+    if (req.body.avatar !== '') {
+        const user = await userAuth.findById(req.user.id)
+
+        const image_id = user.avatar.public_id;
+        const res = await cloudinary.v2.uploader.destroy(image_id);
+
+        const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: 'avatars',
+            width: 150,
+            crop: "scale"
+        })
+
+        newUserData.avatar = {
+            public_id: result.public_id,
+            url: result.secure_url
+        }
+    }
+
+    const user = await userAuth.findByIdAndUpdate(req.user.id, newUserData, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
     })
+
     res.status(200).json({
-        success:true
+        success: true
     })
 })
+
+
 
 //Admin routes 
 exports.getAllUsers= catchAsyncErrors(async (req,res,next)=>{
