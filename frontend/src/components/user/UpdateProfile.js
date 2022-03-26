@@ -11,12 +11,12 @@ import { UPDATE_PROFILE_RESET } from '../../constants/user'
 
 const UpdateProfile = () => {
 
-    let navigate=useNavigate();
+   
     const [name,setName]=useState('')
     const [email,setEmail]=useState('')
     const [avatar, setAvatar] = useState('')
     const [avatarPreview, setAvatarPreview] = useState('../../../public/imgs/default_avatar.jpg')
-    
+    let navigate=useNavigate();
     const alert = useAlert();
     const dispatch = useDispatch();
     
@@ -57,7 +57,7 @@ const UpdateProfile = () => {
         formData.set('email', email);
         formData.set('avatar', avatar);
     
-        dispatch(UpdateProfile(formData))
+        dispatch(updateProfile(formData))
     }
     
     const onChange = e => {

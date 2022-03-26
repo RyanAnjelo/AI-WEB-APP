@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { response } from 'express'
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
@@ -85,7 +84,7 @@ export const updateProfile = (userData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put('api/v1/profile/update', userData, config)
+        const { data } = await axios.put('/api/v1/profile/update', userData, config)
         console.log(data.success)
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
