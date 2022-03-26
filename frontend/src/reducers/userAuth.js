@@ -8,6 +8,15 @@ import {
     LOAD_USER_REQUEST,
     LOAD_USER_SUCCESS,
     LOAD_USER_FAIL,
+    LOGOUT_USER_FAIL,
+    LOGOUT_USER_SUCCESS,
+    UPDATE_PROFILE_REQUEST,
+    UPDATE_PROFILE_SUCCESS,
+    UPDATE_PROFILE_FAIL,
+    UPDATE_PROFILE_RESET,
+    UPDATE_PASSWORD_REQUEST,
+    UPDATE_PASSWORD_SUCCESS,
+    UPDATE_PASSWORD_FAIL,
     CLEAR_ERRORS
 
 } from '../constants/user.js'
@@ -34,7 +43,14 @@ export const authUser= (state ={user:{}},action)=>{
                 isAuthenticated:true,
                 user:action.payload
             }
-
+        case LOGOUT_USER_SUCCESS:
+            return{
+                loading:false,
+                isAuthenticated:false,
+                user:null,
+                user:action.payload
+            }
+        
         case LOAD_USER_FAIL:
             return {
                 loading:false,
@@ -45,7 +61,6 @@ export const authUser= (state ={user:{}},action)=>{
 
         case SIGNUP_FAIL:
         case LOGIN_FAIL:
-        
             return{
                 ...state,
                 loading:false,
@@ -53,6 +68,11 @@ export const authUser= (state ={user:{}},action)=>{
                 user:null,
                 error:action.payload
 
+            }
+        case LOGOUT_USER_FAIL:
+            return{
+                ...state,
+                error:action.payload
             }
         case CLEAR_ERRORS:
             return{
@@ -63,4 +83,36 @@ export const authUser= (state ={user:{}},action)=>{
             return state
     }
 
+}
+
+export const userReducer = (state ={} , action)=>{
+    switch(action.type){
+
+        case UPDATE_PROFILE_REQUEST:
+            return{
+                ...state,
+                loading:true
+
+            }
+        case UPDATE_PROFILE_SUCCESS:
+            return{
+                ...state,
+                loading:false,
+                isUpdated:action.payload
+            }
+        case UPDATE_PROFILE_RESET:
+            return{
+                ...state,
+                isUpdated:false
+                
+            }
+        case UPDATE_PROFILE_FAIL:
+            return{
+                ...state,
+                loading:false,
+                error:action.payload
+            }
+        default:
+            return state;
+    }
 }

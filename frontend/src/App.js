@@ -10,6 +10,9 @@ import Register from './components/user/Register';
 import {loadUser} from './actions/users'
 import store from './store'
 import { useDispatch , useSelector } from 'react-redux'
+import Profile  from './components/user/Profile'
+import ProtectedRoute from './components/routes/ProtectedRoutes';
+import UpdateProfile from './components/user/UpdateProfile';
 
 function App() {
 
@@ -43,9 +46,11 @@ function App() {
             <Route path="/search/:keyword" element={<Home />}/>
             <Route path="/product/:id" element={<ProductDetails/>}  />
             <Route path="/login" element={<Login/>}  />
-            <Route path="/register" element={<Register/>}  />
-           
+            <Route path="/register" element={<Register/>}  /> 
+            <Route path="profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
+            <Route path="/profile/update" element={<ProtectedRoute><UpdateProfile/></ProtectedRoute>}/>
             </Routes>
+            
         </div>
      <Footer/>
     </div>
