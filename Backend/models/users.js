@@ -22,7 +22,7 @@ password:{
     required:[true,'Please enter a password'],
     minlength:[6,'Please enter a password with more than 6 character']
 },
-avator:{
+avatar:{
     public_id:{
         type:String,
         required:false

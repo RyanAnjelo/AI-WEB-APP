@@ -42,7 +42,7 @@ const { user, loading } = useSelector(state => state.auth)
 
                                 <figure className="avatar avatar-nav">
                                     <img 
-                                        src={user.avator && user.avator.url}
+                                        src={user.avatar && user.avatar.url}
                                         alt={user && user.name}
                                         className="rounded-circle"
                                     />

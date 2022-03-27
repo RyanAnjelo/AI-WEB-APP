@@ -29,7 +29,7 @@ const UpdateProfile = () => {
         if (user) {
           setName(user.name);
           setEmail(user.email);
-          setAvatarPreview(user.avator.url)
+          setAvatarPreview(user.avatar.url)
         
         }
     
@@ -60,22 +60,24 @@ const UpdateProfile = () => {
         dispatch(updateProfile(formData))
     }
     
+  
     const onChange = e => {
-       
-    
+        if (e.target.name === 'avatar') {
+  
             const reader = new FileReader();
-    
+  
             reader.onload = () => {
                 if (reader.readyState === 2) {
                     setAvatarPreview(reader.result)
                     setAvatar(reader.result)
                 }
             }
-    
+  
             reader.readAsDataURL(e.target.files[0])
-    
+  
+        } 
     }
-    
+  
     
 
   return (

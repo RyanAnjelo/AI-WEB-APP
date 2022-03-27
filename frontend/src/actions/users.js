@@ -85,7 +85,7 @@ export const updateProfile = (userData) => async (dispatch) => {
         }
 
         const { data } = await axios.put('/api/v1/profile/update', userData, config)
-        console.log(data.success)
+        console.log(data.user)
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
             payload: data.success
@@ -112,7 +112,7 @@ export const loadUser = () => async (dispatch) => {
         dispatch({ type: LOAD_USER_REQUEST })
 
         const { data } = await axios.get('/api/v1/profile')
-      
+        console.log(data.user);
 
         dispatch({
             type: LOAD_USER_SUCCESS,

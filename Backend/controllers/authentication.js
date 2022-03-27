@@ -22,7 +22,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
         name,
         email,
         password,
-        avator: {
+        avatar: {
             public_id: result.public_id,
             url: result.secure_url
         }
@@ -68,7 +68,7 @@ exports.logout=catchAsyncErrors(async(req,res,next)=>{
     })
 
 })
-    
+
 // Password token send for reset by mail
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
@@ -161,7 +161,17 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
 })
 
+exports.getUserProfile = catchAsyncErrors(async (req, res, next) => {
+    const user = await userAuth.findById(req.user.id);
 
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
+
+
+//update user profile
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     const newUserData = {
         name: req.body.name,
