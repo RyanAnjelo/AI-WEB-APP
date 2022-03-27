@@ -116,7 +116,7 @@ export const loadUser = () => async (dispatch) => {
 
         dispatch({
             type: LOAD_USER_SUCCESS,
-            payload: data.logedUser,
+            payload: data.user,
             
         })
 
