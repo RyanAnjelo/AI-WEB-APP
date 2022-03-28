@@ -20,6 +20,7 @@ const Login = () => {
     useEffect(()=>{
         if(isAuthenticated){
             navigate('/')
+            
         }
     
         if(error){
@@ -33,6 +34,7 @@ const Login = () => {
     const loginHandler=(ev)=>{
         ev.preventDefault();
         dispatch(userLogin(email,password));
+        
     }
     
     

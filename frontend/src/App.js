@@ -13,7 +13,9 @@ import { useDispatch , useSelector } from 'react-redux'
 import Profile  from './components/user/Profile'
 import ProtectedRoute from './components/routes/ProtectedRoutes';
 import UpdateProfile from './components/user/UpdateProfile';
-
+import UpdatePassword from './components/user/UpdatePassword';
+import ForgotPassword from './components/user/ForgotPassword';
+import ResetPassword from './components/user/ResetPassword';
 function App() {
 
   const dispatch= useDispatch();
@@ -47,8 +49,12 @@ function App() {
             <Route path="/product/:id" element={<ProductDetails/>}  />
             <Route path="/login" element={<Login/>}  />
             <Route path="/register" element={<Register/>}  /> 
+            <Route path="/password/forgot" element={<ForgotPassword/>}  /> 
+            <Route path="/password/reset/:token" element={<ResetPassword/>}  /> 
             <Route path="profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
             <Route path="/profile/update" element={<ProtectedRoute><UpdateProfile/></ProtectedRoute>}/>
+            <Route path="/password/update" element={<ProtectedRoute><UpdatePassword/></ProtectedRoute>}/>
+
             </Routes>
             
         </div>
