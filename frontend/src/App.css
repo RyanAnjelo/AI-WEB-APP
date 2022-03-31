@@ -187,7 +187,9 @@ footer {
 }
 
 #product_image {
-  margin-top: 9rem;
+  margin-top: 10rem;
+ 
+
 }
 
 /* Loader */
@@ -271,7 +273,8 @@ footer {
 
 .stockCounter input {
   border: none;
-  width: 3rem;
+  
+  width: 4rem;
   text-align: center;
 }
 

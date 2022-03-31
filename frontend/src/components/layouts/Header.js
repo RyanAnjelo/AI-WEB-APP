@@ -16,25 +16,26 @@ const logoutHandler = () =>{
 }
 
 const { user, loading } = useSelector(state => state.auth)
+const { cartItems } = useSelector(state => state.cart)
   return ( 
     <Fragment>
      
          <nav className="navbar row">
       <div className="col-12 col-md-3">
         <div className="navbar-brand">
-          <img src="./imgs/logo.png" style={{width:'190px',height:'55px'}}/>
+          <Link to='/'> <img src="./imgs/logo.png" style={{width:'190px',height:'55px'}}/></Link>
+         
         </div>
       </div>
-
       <div className="col-12 col-md-6 mt-2 mt-md-0 ">
       <Search />
       </div>
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+        
                     <Link to="/cart" style={{ textDecoration: 'none' }} >
                         <span id="cart" className="ml-3">Cart</span>
-                        <span className="ml-1" id="cart_count">2</span>
-                    </Link>
-
+                        <span className="ml-1" id="cart_count">{cartItems.length}</span>
+                    </Link> 
                     {user ? (
                         <div className="ml-4 dropdown d-inline">
                             <Link to="#!" className="btn dropdown-toggle text-white mr-4 " type="button" id="dropDownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

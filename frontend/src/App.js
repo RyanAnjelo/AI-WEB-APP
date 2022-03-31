@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     store.dispatch(loadUser())
-    store.dispatch()
+  
     //async function getStripApiKey() {
     //  const { data } = await axios.get('/api/v1/stripeapi');
 
