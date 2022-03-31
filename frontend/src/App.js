@@ -1,15 +1,24 @@
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import { useEffect } from 'react';
+import { useDispatch , useSelector } from 'react-redux'
 import './App.css';
+//Components
 import Header from './components/layouts/Header';
 import Footer from './components/layouts/Footer';
 import Home from './components/Home';
+
+//Products 
 import ProductDetails from './components/products/ProductDetails';
+
+//Cart
+import Cart from './components/cart/Cart';
+import ShippingCart from './components/cart/ShippingCart'
+
+//Auth
 import Login from './components/user/Login'
 import Register from './components/user/Register';
 import {loadUser} from './actions/users'
 import store from './store'
-import { useDispatch , useSelector } from 'react-redux'
 import Profile  from './components/user/Profile'
 import ProtectedRoute from './components/routes/ProtectedRoutes';
 import UpdateProfile from './components/user/UpdateProfile';
@@ -23,7 +32,7 @@ function App() {
 
   useEffect(() => {
     store.dispatch(loadUser())
-
+    store.dispatch()
     //async function getStripApiKey() {
     //  const { data } = await axios.get('/api/v1/stripeapi');
 
@@ -47,6 +56,7 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="/search/:keyword" element={<Home />}/>
             <Route path="/product/:id" element={<ProductDetails/>}  />
+            
             <Route path="/login" element={<Login/>}  />
             <Route path="/register" element={<Register/>}  /> 
             <Route path="/password/forgot" element={<ForgotPassword/>}  /> 
@@ -55,6 +65,9 @@ function App() {
             <Route path="/profile/update" element={<ProtectedRoute><UpdateProfile/></ProtectedRoute>}/>
             <Route path="/password/update" element={<ProtectedRoute><UpdatePassword/></ProtectedRoute>}/>
 
+            <Route path="/cart" element={<Cart/>}  /> 
+            <Route path="/shipping" element={<ProtectedRoute><ShippingCart/></ProtectedRoute>}/>
+            
             </Routes>
             
         </div>
