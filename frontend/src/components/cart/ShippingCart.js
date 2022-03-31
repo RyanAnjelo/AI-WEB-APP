@@ -1,5 +1,5 @@
 import React, { Fragment, useState,useMemo  } from 'react'
-import Select from 'react-select'
+import {countries ,getNameList}from 'country-list'
 import countryList from 'react-select-country-list'
 
 import MetaData from '../layouts/MetaData'
@@ -10,9 +10,7 @@ import { saveShippingInfo } from '../../actions/cart'
 import { useNavigate } from 'react-router-dom'
 
 const ShippingCart = () => {
-  //  const countriesList = Object.values(countries)
-    const options = useMemo(() => countryList().getData(), [])
-
+    const countriesList = Object.values(countries)
     const { shippingInfo } = useSelector(state => state.cart)
 
     const [address, setAddress] = useState(shippingInfo.address)
@@ -89,15 +87,23 @@ const ShippingCart = () => {
 
                         <div className="form-group">
                             <label htmlFor="country_field">Country</label>
-                            <Select >
+                            <select
                                 id="country_field"
                                 className="form-control"
                                 value={country}
                                 onChange={(e) => setCountry(e.target.value)}
                                 required
-                                options={options} 
-                                </Select>
+                            >
+
+                                {countriesList.map(country => (
+                                    <option key={country.name} value={country.name}>
+                                        {country.name}
+                                    </option>
+                                ))}
+
+                            </select>
                         </div>
+
 
                         <button
                             id="shipping_btn"

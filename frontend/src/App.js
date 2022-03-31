@@ -1,4 +1,4 @@
-import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Routes,Navigate} from 'react-router-dom'
 import { useEffect } from 'react';
 import { useDispatch , useSelector } from 'react-redux'
 import './App.css';
@@ -66,7 +66,9 @@ function App() {
             <Route path="/password/update" element={<ProtectedRoute><UpdatePassword/></ProtectedRoute>}/>
 
             <Route path="/cart" element={<Cart/>}  /> 
-            <Route path="/shipping" element={<ProtectedRoute><ShippingCart/></ProtectedRoute>}/>
+            <Route path="/shipping" 
+            element={user!==null ? <ProtectedRoute><ShippingCart/></ProtectedRoute>:<Navigate to="/login"/>
+          }/>
             
             </Routes>
             
