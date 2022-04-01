@@ -1,6 +1,5 @@
 import React, { Fragment, useState,useMemo  } from 'react'
-import {countries ,getNameList}from 'country-list'
-import countryList from 'react-select-country-list'
+import { countries } from 'countries-list'
 
 import MetaData from '../layouts/MetaData'
 //import CheckoutSteps from './CheckoutSteps'
@@ -8,9 +7,10 @@ import MetaData from '../layouts/MetaData'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingInfo } from '../../actions/cart'
 import { useNavigate } from 'react-router-dom'
+import Checkout from './Checkout'
 
 const ShippingCart = () => {
-    const countriesList = Object.values(countries)
+   const countriesList = Object.values(countries)
     const { shippingInfo } = useSelector(state => state.cart)
 
     const [address, setAddress] = useState(shippingInfo.address)
@@ -26,13 +26,13 @@ const ShippingCart = () => {
         e.preventDefault()
 
         dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country }))
-        navigate('/confirm')
+        navigate('/order/confirm')
     }
 
   return (
    <Fragment>
             <MetaData title={'Shipping Info'} />
-         
+            <Checkout shipping/>
                 <div className="row wrapper">
                 <div className="col-10 col-lg-5">
                     <form className="shadow-lg" onSubmit={submitHandler}>

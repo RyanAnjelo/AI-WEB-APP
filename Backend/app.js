@@ -34,7 +34,7 @@ app.use(fileUpload({useTempFiles: true}))
 // Import all routes
 const products=require('./routes/products');
 const auth = require('./routes/userAuth');
-//const payment = require('./routes/payment');
+const payment = require('./routes/payments');
 const order = require('./routes/orders');
 
 
