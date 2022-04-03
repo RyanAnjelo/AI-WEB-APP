@@ -4,7 +4,7 @@ import {useAlert} from 'react-alert'
 import MetaData from '../layouts/MetaData'
 
 import {forgotPassword, clearErrors} from '../../actions/users'
-import { Navigate, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
  
 const ForgotPassword = () => {
     const [email, setEmail] = useState('')

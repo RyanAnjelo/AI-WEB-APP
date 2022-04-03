@@ -17,6 +17,7 @@ import Cart from './components/cart/Cart';
 import ShippingCart from './components/cart/ShippingCart'
 import ConfirmOrder from './components/cart/ConfirmOrder';
 import Payment from './components/cart/Payment';
+import OrderSucess from './components/cart/OrderSucess';
 //Auth
 import Login from './components/user/Login'
 import Register from './components/user/Register';
@@ -33,7 +34,14 @@ import ResetPassword from './components/user/ResetPassword';
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 
+//Orders
+import OrderList from './components/order/OrderList';
 
+import OrderDetails from './components/order/OrderDetails';
+
+// Admin 
+import Dashboard from './components/admin/Dashboard';
+import ProductList from './components/admin/ProductList'
 
 function App() {
 
@@ -80,19 +88,26 @@ function App() {
             element={user!==null ? <ProtectedRoute><ShippingCart/></ProtectedRoute>:<Navigate to="/login"/>
           }/>
              <Route path="/order/confirm" element={<ProtectedRoute><ConfirmOrder/></ProtectedRoute>}/>
+             <Route path="/success" element={<ProtectedRoute><OrderSucess/></ProtectedRoute>}/>
              {stripeApiKey &&      
                 <Route path="/payment" 
                 element={
                 <ProtectedRoute><Elements stripe={loadStripe(stripeApiKey)}>
                 <Payment/>
               </Elements></ProtectedRoute>
-                
-                } 
-                />
-              }
+              }/>}
+               <Route path="/orders/me" element={<ProtectedRoute><OrderList/></ProtectedRoute>}/>
+               <Route path="/order/:id" element={<ProtectedRoute><OrderDetails/></ProtectedRoute>}/>
+               </Routes>
+               </div>
+               <Routes>
+               <Route path="/dashboard" isAdmin={true} element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+               <Route path="/admin/products" isAdmin={true} element={<ProtectedRoute><ProductList/></ProtectedRoute>}/>
+
+
             </Routes>
           
-        </div>
+      
      <Footer/>
     </div>
     </Router>

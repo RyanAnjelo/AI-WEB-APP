@@ -21,7 +21,7 @@ import {
     ORDER_DETAILS_FAIL,
     CLEAR_ERRORS
 } from '../constants/orders'
-
+// create new order 
 export const newOrderReducer = (state = {}, action) => {
     switch (action.type) {
 
@@ -53,7 +53,7 @@ export const newOrderReducer = (state = {}, action) => {
             return state;
     }
 }
-
+// get all orders 
 export const myOrdersReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
 
@@ -83,7 +83,7 @@ export const myOrdersReducer = (state = { orders: [] }, action) => {
             return state;
     }
 }
-
+//obtain the detailed des of orders
 export const orderDetailsReducer = (state = { order: {} }, action) => {
     switch (action.type) {
 

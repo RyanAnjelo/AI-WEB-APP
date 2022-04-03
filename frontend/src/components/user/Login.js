@@ -14,7 +14,7 @@ const Login = () => {
     const [password,setPassword]=useState('');
 
     let navigate=useNavigate();
-    let params=useParams();
+  
     let location =useLocation();
     const {isAuthenticated,error,loading}=useSelector(state =>state.auth);
     const redirect=location.search ? location.search.split('=')[1] : '/'

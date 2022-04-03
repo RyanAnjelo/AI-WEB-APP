@@ -6,7 +6,7 @@
     const { 
             getProducts,newProduct,getSingleProduct,
             updateProducts,deleteProduct,createProductReview,
-            getProductReviews,deleteReview
+            getProductReviews,deleteReview,getAdminProducts
           }
         =require('../controllers/products');
 
@@ -18,6 +18,7 @@
 
     router.route('/product/:id').get(getSingleProduct);// single product being obtained
     router.route('/reviews').get(isAuthenticatedUser, getProductReviews);//get all reviews of a product
+    router.route('/admin/products').get(getAdminProducts);//gets all products for admin view 
 
     //PUT req
     router.route('/admin/product/:id').put(isAuthenticatedUser,authorizationOfRoles('admin'),updateProducts); //update product 

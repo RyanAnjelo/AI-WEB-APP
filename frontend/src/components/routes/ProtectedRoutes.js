@@ -1,4 +1,4 @@
-import React, { Fragment ,useEffect} from 'react'
+import React, {useEffect} from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import {loadUser} from '../../actions/users'
 import Loader from '../../components/layouts/Loader'

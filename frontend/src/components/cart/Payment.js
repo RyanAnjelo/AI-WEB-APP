@@ -73,6 +73,7 @@ const Payment = () => {
             }
 
             res = await axios.post('/api/v1/payment/process', paymentData, config)
+           // console.log(res);
 
             const clientSecret = res.data.client_secret;
 

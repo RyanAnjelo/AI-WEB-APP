@@ -12,6 +12,7 @@
     "axios": "^0.26.0",
     "countries-list": "^2.6.1",
     "country-list": "^2.2.0",
+    "mdbreact": "^5.2.0",
     "metro": "^0.56.0",
     "node-polyfill-webpack-plugin": "^1.1.4",
     "path": "^0.12.7",

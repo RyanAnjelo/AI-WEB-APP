@@ -54,7 +54,7 @@ const { cartItems } = useSelector(state => state.cart)
                                 {user && user.role === 'admin' && (
                                     <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
                                 )}
-                                <Link className="dropdown-item" to="/orders/my">Orders</Link>
+                                <Link className="dropdown-item" to="/orders/me">Orders</Link>
                                 <Link className="dropdown-item" to="/profile">Profile</Link>
                                 <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler} >
                                     Logout
