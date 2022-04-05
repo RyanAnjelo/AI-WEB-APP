@@ -42,6 +42,8 @@ import OrderDetails from './components/order/OrderDetails';
 // Admin 
 import Dashboard from './components/admin/Dashboard';
 import ProductList from './components/admin/ProductList'
+import NewProduct from './components/admin/NewProduct';
+import UpdateProducts from './components/admin/UpdateProducts';
 
 function App() {
 
@@ -103,12 +105,16 @@ function App() {
                <Routes>
                <Route path="/dashboard" isAdmin={true} element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
                <Route path="/admin/products" isAdmin={true} element={<ProtectedRoute><ProductList/></ProtectedRoute>}/>
+               <Route path="/admin/product" isAdmin={true} element={<ProtectedRoute><NewProduct/></ProtectedRoute>}/>
+               <Route path="/admin/product/:id" isAdmin={true} element={<ProtectedRoute><UpdateProducts/></ProtectedRoute>}/>
 
 
             </Routes>
           
       
-     <Footer/>
+            {!loading && (!isAuthenticated || user.role !== 'admin') && (
+          <Footer />
+        )}
     </div>
     </Router>
   );

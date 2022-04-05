@@ -22,12 +22,14 @@
 
     //PUT req
     router.route('/admin/product/:id').put(isAuthenticatedUser,authorizationOfRoles('admin'),updateProducts); //update product 
-    router.route('/admin/product/:id').put(isAuthenticatedUser,authorizationOfRoles('admin'),updateProducts).delete(isAuthenticatedUser,deleteProduct); //delete product
     router.route('/review').put(isAuthenticatedUser,createProductReview);
+    
     //Post req
-
     router.route('/admin/product/new').post(isAuthenticatedUser,authorizationOfRoles('admin'),newProduct);// new product being added
+    
     //Delete req
     router.route('/reviews/delete').delete(isAuthenticatedUser, deleteReview)
+    router.route('/admin/product/:id').put(isAuthenticatedUser,authorizationOfRoles('admin'),updateProducts).delete(isAuthenticatedUser,deleteProduct); //delete product
+
     module.exports=router;
 
