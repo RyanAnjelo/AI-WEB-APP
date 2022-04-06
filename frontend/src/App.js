@@ -44,6 +44,10 @@ import Dashboard from './components/admin/Dashboard';
 import ProductList from './components/admin/ProductList'
 import NewProduct from './components/admin/NewProduct';
 import UpdateProducts from './components/admin/UpdateProducts';
+import OrdersLists from './components/admin/OrdersLists';
+import OrderProcessing from './components/admin/OrderProcessing';
+import Users from './components/admin/Users';
+import UpdateUser from './components/admin/UpdateUser';
 
 function App() {
 
@@ -107,9 +111,13 @@ function App() {
                <Route path="/admin/products" isAdmin={true} element={<ProtectedRoute><ProductList/></ProtectedRoute>}/>
                <Route path="/admin/product" isAdmin={true} element={<ProtectedRoute><NewProduct/></ProtectedRoute>}/>
                <Route path="/admin/product/:id" isAdmin={true} element={<ProtectedRoute><UpdateProducts/></ProtectedRoute>}/>
+               <Route path="/admin/orders" isAdmin={true} element={<ProtectedRoute><OrdersLists/></ProtectedRoute>}/>
+               <Route path="/admin/order/process/:id" isAdmin={true} element={<ProtectedRoute><OrderProcessing/></ProtectedRoute>}/>
+              <Route path="/admin/getAllUsers" isAdmin={true} element={<ProtectedRoute><Users/></ProtectedRoute>}/>
+              <Route path="/admin/profile/update/:id" isAdmin={true} element={<ProtectedRoute><UpdateUser/></ProtectedRoute>}/>
 
-
-            </Routes>
+        
+        </Routes>
           
       
             {!loading && (!isAuthenticated || user.role !== 'admin') && (

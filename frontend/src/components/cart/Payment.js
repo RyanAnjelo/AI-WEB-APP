@@ -107,8 +107,11 @@ const Payment = () => {
                     }
 
                     dispatch(createOrder(order))
-
+                   
+                   
+                    window.localStorage.removeItem("cartItems");
                     navigate('/success')
+                  
                 } else {
                     alert.error('There is some issue while payment processing')
                 }

@@ -56,7 +56,7 @@ export const myOrders = () => async (dispatch) => {
         dispatch({ type: MY_ORDERS_REQUEST });
 
         const { data } = await axios.get('/api/v1/orders/me')
-        console.log(data);
+        
         dispatch({
             type: MY_ORDERS_SUCCESS,
             payload: data.orders
@@ -98,7 +98,7 @@ export const allOrders = () => async (dispatch) => {
         dispatch({ type: ALL_ORDERS_REQUEST });
 
         const { data } = await axios.get(`/api/v1/admin/orders`)
-
+        
         dispatch({
             type: ALL_ORDERS_SUCCESS,
             payload: data
@@ -109,6 +109,7 @@ export const allOrders = () => async (dispatch) => {
             type: ALL_ORDERS_FAIL,
             payload: error.response.data.message
         })
+        
     }
 }
 
@@ -124,7 +125,7 @@ export const updateOrder = (id, orderData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put(`/api/v1/admin/order/${id}`, orderData, config)
+        const { data } = await axios.put(`/api/v1/admin/order/process/${id}`, orderData, config)
 
         dispatch({
             type: UPDATE_ORDER_SUCCESS,

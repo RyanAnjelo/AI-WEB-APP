@@ -10,12 +10,17 @@ const {
 const {isAuthenticatedUser,authorizationOfRoles}=require('../middleware/authenticateRoutes');//getting authorization for routing
 
 //Routing the routes 
+//get req
 router.route('/order/new').post(isAuthenticatedUser,createNewOrder);
 router.route('/order/:id').get(isAuthenticatedUser,getOrderDetails);
 router.route('/orders/me').get(isAuthenticatedUser,myOrders);
-router.route('/admin/orders/total').get(isAuthenticatedUser,authorizationOfRoles('admin'),getAllOrders);
+router.route('/admin/orders').get(isAuthenticatedUser, authorizationOfRoles('admin'), getAllOrders);
+
+//put req
 router.route('/admin/order/process/:id').put(isAuthenticatedUser,authorizationOfRoles('admin'),updateDeliveryStatus);
-router.route('/admin/order/:id').delete(isAuthenticatedUser,authorizationOfRoles('admin'),deleteOrder);
+
+//delete req
+router.route('/admin/order/:id').delete(isAuthenticatedUser, authorizationOfRoles('admin'), deleteOrder);
 
 
 

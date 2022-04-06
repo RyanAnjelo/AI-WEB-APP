@@ -53,7 +53,7 @@ export const newOrderReducer = (state = {}, action) => {
             return state;
     }
 }
-// get all orders 
+// get all orders (user)
 export const myOrdersReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
 
@@ -113,7 +113,7 @@ export const orderDetailsReducer = (state = { order: {} }, action) => {
             return state;
     }
 }
-
+// shows all orders (admin)
 export const allOrdersReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
 
@@ -144,7 +144,7 @@ export const allOrdersReducer = (state = { orders: [] }, action) => {
             return state;
     }
 }
-
+// The method to handle crud for orders
 export const orderReducer = (state = {}, action) => {
     switch (action.type) {
 

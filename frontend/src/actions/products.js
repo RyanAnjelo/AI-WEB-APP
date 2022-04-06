@@ -117,8 +117,7 @@ export const newReview = (reviewData) => async (dispatch) => {
         }
 
         const { data } = await axios.put(`/api/v1/review`, reviewData, config)
-        console.log(data)
-        console.log(data.success);
+        
         dispatch({
             type: NEW_REVIEW_SUCCESS,
             payload: data.success
@@ -217,8 +216,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
         }
 
         const { data } = await axios.put(`/api/v1/admin/product/${id}`, productData, config)
-        console.log(data.success);
-        console.log(data);
+        
        
         dispatch({
             type: UPDATE_PRODUCT_SUCCESS,

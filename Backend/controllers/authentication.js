@@ -230,8 +230,8 @@ exports.getUserDetials= catchAsyncErrors(async (req,res,next)=>{
         user
     })
 })
-// admin update profile 
-exports.updateAdminProfile = catchAsyncErrors(async (req, res, next) => {
+// admin user update profile 
+exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
     // Create model for containing data 
      const newUserData = {
          name: req.body.name,
@@ -256,6 +256,11 @@ exports.updateAdminProfile = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('user doesnt exits'),404);
     }
 
+     // Remove avatar from cloudinary
+    const image_id = user.avatar.public_id;
+    await cloudinary.v2.uploader.destroy(image_id);
+
+    
     await user.remove();//remove user
     
     res.status(200).json({

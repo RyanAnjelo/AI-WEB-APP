@@ -109,7 +109,7 @@ export const updateProfile = (userData) => async (dispatch) => {
         }
 
         const { data } = await axios.put('/api/v1/profile/update', userData, config)
-        console.log(data.user)
+        
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
             payload: data.success
@@ -162,7 +162,7 @@ export const loadUser = () => async (dispatch) => {
         dispatch({ type: LOAD_USER_REQUEST })
 
         const { data } = await axios.get('/api/v1/profile')
-        //console.log(data.user);
+        
 
         dispatch({
             type: LOAD_USER_SUCCESS,
@@ -191,7 +191,7 @@ export const forgotPassword = (email) => async (dispatch) => {
         }
 
         const { data } = await axios.post('/api/v1/password/forgot', email, config)
-        console.log(data.message)
+       
         dispatch({
             type: FORGOT_PASSWORD_SUCCESS,
             payload: data.message
@@ -256,7 +256,7 @@ export const allUsers = () => async (dispatch) => {
 
         dispatch({ type: ALL_USERS_REQUEST })
 
-        const { data } = await axios.get('/api/v1/admin/users')
+        const { data } = await axios.get('/api/v1/admin/getAllUsers')
 
         dispatch({
             type: ALL_USERS_SUCCESS,
@@ -283,7 +283,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put(`/api/v1/admin/user/${id}`, userData, config)
+        const { data } = await axios.put(`/api/v1/admin/profile/update/${id}`, userData, config)
 
         dispatch({
             type: UPDATE_USER_SUCCESS,
@@ -326,7 +326,7 @@ export const deleteUser = (id) => async (dispatch) => {
 
         dispatch({ type: DELETE_USER_REQUEST })
 
-        const { data } = await axios.delete(`/api/v1/admin/user/${id}`)
+        const { data } = await axios.delete(`/api/v1/admin/delete/user/${id}`)
 
         dispatch({
             type: DELETE_USER_SUCCESS,
@@ -340,7 +340,6 @@ export const deleteUser = (id) => async (dispatch) => {
         })
     }
 }
-
 export const clearErrors = () => async (dispatch) => {
     dispatch({
         type: CLEAR_ERRORS
