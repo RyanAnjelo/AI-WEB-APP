@@ -320,7 +320,14 @@ footer {
   font-size: 0.9rem;
   color: grey;
 }
-
+.error{
+  
+    opacity: .8;
+    top: 0px;
+    left: 0px;
+    color: rgb(146, 9, 9);
+    width: 100%;
+}
 /* Avatar */
 .avatar {
   display: inline-block;

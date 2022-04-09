@@ -30,7 +30,7 @@ const Users = () => {
 
         if (isDeleted) {
             alert.success('User deleted successfully');
-            navigate('/admin/users');
+            navigate('/admin/getAllUsers');
             dispatch({ type: DELETE_USER_RESET })
         }
 
@@ -79,7 +79,7 @@ const Users = () => {
                 role: user.role,
 
                 actions: <Fragment>
-                    <Link to={`/admin/user/${user._id}`} className="btn btn-primary py-1 px-2">
+                    <Link to={`/admin/profile/update/${user._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
                     </Link>
                     <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteUserHandler(user._id)}>

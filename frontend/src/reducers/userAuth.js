@@ -38,8 +38,6 @@ import {
     DELETE_USER_SUCCESS,
     DELETE_USER_RESET,
     DELETE_USER_FAIL,
-    LOGOUT_SUCCESS,
-    LOGOUT_FAIL,
     CLEAR_ERRORS
 
 } from '../constants/user.js'
@@ -89,7 +87,8 @@ export const authUser= (state ={user:{}},action)=>{
                 ...state,
                 loading:false,
                 isAuthenticated:false,
-                user:null,
+                user: null,
+                failed:true,
                 error:action.payload
 
             }

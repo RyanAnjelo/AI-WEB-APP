@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "@material-ui/core": "^4.12.3",
     "@stripe/react-stripe-js": "^1.7.0",
     "@stripe/stripe-js": "^1.26.0",
@@ -12,6 +17,8 @@
     "axios": "^0.26.0",
     "countries-list": "^2.6.1",
     "country-list": "^2.2.0",
+    "email-validator": "^2.0.4",
+    "formik": "^2.2.9",
     "mdbreact": "^5.2.0",
     "metro": "^0.56.0",
     "node-polyfill-webpack-plugin": "^1.1.4",
@@ -33,7 +40,9 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "stream": "^0.0.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yum": "^0.1.1",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

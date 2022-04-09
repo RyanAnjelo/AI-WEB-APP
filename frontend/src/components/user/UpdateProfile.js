@@ -47,7 +47,7 @@ const UpdateProfile = () => {
             })
         }
     
-    }, [dispatch, alert, error, navigate,isUpdated])
+    }, [dispatch, alert, error, navigate,isUpdated,user])
     
     const submitHandler = (e) => {
         e.preventDefault();
@@ -97,6 +97,7 @@ const UpdateProfile = () => {
                             className="form-control"
                             name='name'
                             value={name}
+                            required
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
@@ -109,6 +110,7 @@ const UpdateProfile = () => {
                             className="form-control"
                             name='email'
                             value={email}
+                            required  
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>

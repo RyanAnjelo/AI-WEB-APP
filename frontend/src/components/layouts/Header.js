@@ -1,6 +1,6 @@
 import React, { Fragment  } from 'react'
 import Search from './Search'
-import {Route, useNavigate,Routes, Router, Link} from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import {useDispatch , useSelector} from 'react-redux'
 import {useAlert} from 'react-alert'
 import '../../App.css'
@@ -23,19 +23,20 @@ const { cartItems } = useSelector(state => state.cart)
          <nav className="navbar row">
       <div className="col-12 col-md-3">
         <div className="navbar-brand">
-          <Link to='/'> <img src="./imgs/logo.png" style={{width:'190px',height:'55px'}}/></Link>
+          <Link to='/'> <img src="./imgs/logo.png" style={{width:'190px',height:'55px'}} alt='Ambay'/></Link>
          
         </div>
-      </div>
-      <div className="col-12 col-md-6 mt-2 mt-md-0 ">
-      <Search />
-      </div>
-      <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+        </div>
         
-                    <Link to="/cart" style={{ textDecoration: 'none' }} >
-                        <span id="cart" className="ml-3">Cart</span>
-                        <span className="ml-1" id="cart_count">{cartItems.length}</span>
-                    </Link> 
+          <div className="col-12 col-md-6 mt-2 mt-md-0 ">
+            <Search />
+          </div>
+      <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+          
+            <Link to="/cart" style={{ textDecoration: 'none' }} >
+              <span id="cart" className="ml-3">Cart</span>
+              <span className="ml-1" id="cart_count">{cartItems.length}</span>
+            </Link>
                     {user ? (
                         <div className="ml-4 dropdown d-inline">
                             <Link to="#!" className="btn dropdown-toggle text-white mr-4 " type="button" id="dropDownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

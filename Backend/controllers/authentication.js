@@ -8,14 +8,15 @@ const cloudinary=require('cloudinary');
 
 //Steps to register the user in a much secure way uses crypto 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-
     
-    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-        folder: 'avatars',
-        width: 150,
-        crop: "scale"
-    })
 
+    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: 'avatars',
+            width: 150,
+            crop: "scale"
+        })
+    
+   
     const { name, email, password } = req.body;
 
     const user = await userAuth.create({

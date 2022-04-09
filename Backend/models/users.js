@@ -20,16 +20,19 @@ email:{
 password:{
     type:String,
     required:[true,'Please enter a password'],
-    minlength:[6,'Please enter a password with more than 6 character']
+    minlength:[4,'Please enter a password with more than 4 character']
 },
 avatar:{
     public_id:{
-        type:String,
-        required:false
+        type: String,
+        required:false,
+        default:'https://res.cloudinary.com/ambay0001/image/upload//avatars/avatar_zvvbkd.jpg'
     },
     url:{
         type:String,
-        required:false
+        required:false,
+        default:'https://res.cloudinary.com/ambay0001/image/upload/v1649486400/avatars/avatar_zvvbkd.jpg'
+
     }
 },
 role:{

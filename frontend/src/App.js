@@ -50,6 +50,7 @@ import Users from './components/admin/Users';
 import UpdateUser from './components/admin/UpdateUser';
 import ReviewList from './components/admin/ReviewList';
 
+
 function App() {
 
   const dispatch= useDispatch();
@@ -73,16 +74,21 @@ function App() {
   
 
   return (
+
+    
     <Router>
-    <div className="App">
+          
+      <div className="App">  
      <Header/>
-     <div className="container container-fluid">
+        <div className="container container-fluid">
+          
        <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/search/:keyword" element={<Home />}/>
             <Route path="/product/:id" element={<ProductDetails/>}  />
-            
-            <Route path="/login" element={<Login/>}  />
+          
+           
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register/>}  /> 
             <Route path="/password/forgot" element={<ForgotPassword/>}  /> 
             <Route path="/password/reset/:token" element={<ResetPassword/>}  /> 

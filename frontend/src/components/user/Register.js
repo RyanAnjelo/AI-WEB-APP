@@ -9,13 +9,12 @@ import { useNavigate } from 'react-router-dom'
 
 const Register = ( ) => {
 
-  const [user, setUser] = useState({
-      name: '',
-      email: '',
-      password: '',
-  })
+  const initialValues = { email: "", password: "",name:""};
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
-  const { name, email, password } = user;
+  
   let navigate=useNavigate();
   const [avatar, setAvatar] = useState('')
   const [avatarPreview, setAvatarPreview] = useState('/imgs/default_avatar.jpg')
@@ -36,25 +35,30 @@ const Register = ( ) => {
           dispatch(clearErrors());
       }
 
-  }, [dispatch, alert, isAuthenticated, error, navigate])
+  }, [dispatch, alert, isAuthenticated, error, navigate,formErrors, isSubmit, formValues])
 
   const submitHandler = (e) => {
       e.preventDefault();
-
+      setFormErrors(validate(formValues));
+      setIsSubmit(true);
       const formData = new FormData();
-      formData.set('name', name);
-      formData.set('email', email);
-      formData.set('password', password);
+      formData.set('name', formValues.name);
+      formData.set('email', formValues.email);
+      formData.set('password', formValues.password);
       formData.set('avatar', avatar);
 
       dispatch(userRegister(formData))
   }
 
-  const onChange = e => {
-      if (e.target.name === 'avatar') {
+    const onChange = e => {
 
-          const reader = new FileReader();
-
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+        
+        const reader = new FileReader();
+      
+        if ((e.target.name === 'avatar') !==null ) {
+        
           reader.onload = () => {
               if (reader.readyState === 2) {
                   setAvatarPreview(reader.result)
@@ -64,11 +68,31 @@ const Register = ( ) => {
 
           reader.readAsDataURL(e.target.files[0])
 
-      } else {
-          setUser({ ...user, [e.target.name]: e.target.value })
-      }
+        } 
   }
 
+
+    //method to handle validation of user
+    const validate = (values) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.name) {
+      errors.name = "Username is required!";
+    }
+    if (!values.email) {
+      errors.email = "Email is required!";
+    } else if (!regex.test(values.email)) {
+      errors.email = "This is not a valid email format!";
+    }
+    if (!values.password) {
+      errors.password = "Password is required";
+    } else if (values.password.length < 4) {
+      errors.password = "Password must be more than 4 characters";
+    } else if (values.password.length > 20) {
+      errors.password = "Password cannot exceed more than 20 characters";
+    }
+    return errors;
+  };
   return (
       <Fragment>
 
@@ -86,9 +110,10 @@ const Register = ( ) => {
                               id="name_field"
                               className="form-control"
                               name='name'
-                              value={name}
+                              value={formValues.name}
                               onChange={onChange}
                           />
+                           <p className='error'>{formErrors.name}</p>
                       </div>
 
                       <div className="form-group">
@@ -98,9 +123,10 @@ const Register = ( ) => {
                               id="email_field"
                               className="form-control"
                               name='email'
-                              value={email}
+                              value={formValues.email}
                               onChange={onChange}
                           />
+                           <p className='error'>{formErrors.email}</p>
                       </div>
 
                       <div className="form-group">
@@ -110,9 +136,11 @@ const Register = ( ) => {
                               id="password_field"
                               className="form-control"
                               name='password'
-                              value={password}
+                              value={formValues.password}
                               onChange={onChange}
+                              
                           />
+                           <p className='error'>{formErrors.password}</p>
                       </div>
 
                       <div className='form-group'>
