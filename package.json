@@ -4,7 +4,7 @@
   "description": "Ambay the E-Commerce web app",
   "main": "server.js",
   "scripts": {
-    "start": "SET node backend/server.js",
+    "start": "SET node Backend/server.js",
     "dev": "SET NODE_ENV=DEVELOPMENT& nodemon Backend/server.js",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon Backend/server.js",
     "seeder": "node Backend/utils/seeder.js",
