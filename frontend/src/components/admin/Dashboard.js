@@ -49,7 +49,7 @@ const Dashboard = () => {
                                 <div className="col-xl-12 col-sm-12 mb-3">
                                     <div className="card text-white bg-primary o-hidden h-100">
                                         <div className="card-body">
-                                            <div className="text-center card-font-size">Total Amount<br /> <b>${totalAmount && totalAmount.toFixed(2)}</b>
+                                            <div className="text-center card-font-size">Total Sales<br /> <b>${totalAmount && totalAmount.toFixed(2)}</b>
                                             </div>
                                         </div>
                                     </div>
@@ -63,7 +63,7 @@ const Dashboard = () => {
                                             <div className="text-center card-font-size">Products<br /> <b>{products && products.length}</b></div>
                                         </div>
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/products">
-                                            <span className="float-left">View Details</span>
+                                            <span className="float-left" style={{color:'#019267'}}>View Details</span>
                                             <span className="float-right">
                                                 <i className="fa fa-angle-right"></i>
                                             </span>
@@ -78,7 +78,7 @@ const Dashboard = () => {
                                             <div className="text-center card-font-size">Orders<br /> <b>{orders && orders.length}</b></div>
                                         </div>
                                         <Link className="card-footer text-white clearfix small z-1" to="/admin/orders">
-                                            <span className="float-left">View Details</span>
+                                            <span className="float-left" style={{color:'#F55353'}}>View Details</span>
                                             <span className="float-right">
                                                 <i className="fa fa-angle-right"></i>
                                             </span>
@@ -92,10 +92,10 @@ const Dashboard = () => {
                                         <div className="card-body">
                                             <div className="text-center card-font-size">Users<br /> <b>{users && users.length}</b></div>
                                         </div>
-                                        <Link className="card-footer text-white clearfix small z-1" to="/admin/getAllUsers">
-                                            <span className="float-left">View Details</span>
-                                            <span className="float-right">
-                                                <i className="fa fa-angle-right"></i>
+                                        <Link className="card-footer text-white3  clearfix small z-1"  to="/admin/getAllUsers">
+                                            <span className="float-left" style={{color:'#035397'}}>View Details</span>
+                                            <span className="float-right" >
+                                                <i className="fa fa-angle-right" ></i>
                                             </span>
                                         </Link>
                                     </div>

@@ -8,18 +8,24 @@ const cloudinary=require('cloudinary');
 
 //Steps to register the user in a much secure way uses crypto 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-    
+       
+    const { name, email, password } = req.body;
 
-    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    if (req.body.avatar ===null) {
+
+        const user = await userAuth.create({
+        name,
+        email,
+        password
+        })
+        
+    }else{
+        const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
             folder: 'avatars',
             width: 150,
             crop: "scale"
         })
-    
-   
-    const { name, email, password } = req.body;
-
-    const user = await userAuth.create({
+        const user = await userAuth.create({
         name,
         email,
         password,
@@ -29,6 +35,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
         }
     })
    
+    }
+    
     tokenSend(user, 200, res)
 
 })
@@ -85,7 +93,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await user.save({ validateBeforeSave: false });
 
     // Create reset password url
-    const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+    const resetUrl = `${req.protocol}/://${req.get('host')}password/reset/${resetToken}`;
 
     const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`
 
@@ -265,7 +273,7 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
     await user.remove();//remove user
     
     res.status(200).json({
-        sucess:true,
+        success:true,
         user
     })
 })

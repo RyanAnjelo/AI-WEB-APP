@@ -4,16 +4,16 @@ import {Link} from 'react-router-dom'
 const products = ({product}) => {
   return (
     
-    <div key={product._id} className="col-sm-12 col-md-6 col-lg-3 my-3">
+    <div key={product._id} className="col-sm-12 col-md-6 col-lg-4 my-3">
           <div className="card p-3 rounded">
             <img
               className="card-img-top sm-auto"
-              src={product.images[0].url} 
+              src={product.images[0].url} alt={product.name}
             />
             <div className="card-body d-flex flex-column">
-              <h5 className="card-title">
+              <h8 className="card-title">
               <Link to={`/product/${product._id}`}>{product.name}</Link>
-              </h5>
+              </h8>
               <div className="ratings mt-auto">
                 <div className="rating-outer">
                   <div className="rating-inner" style={{width: `${(product.ratings/5)*100 }%`}}></div>

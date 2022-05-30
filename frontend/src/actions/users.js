@@ -17,7 +17,6 @@ import {
     UPDATE_PROFILE_SUCCESS,
     UPDATE_PASSWORD_REQUEST,
     UPDATE_PASSWORD_SUCCESS,
-    UPDATE_PASSWORD_RESET,
     UPDATE_PASSWORD_FAIL,
     FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_SUCCESS,
@@ -284,17 +283,18 @@ export const updateUser = (id, userData) => async (dispatch) => {
         }
 
         const { data } = await axios.put(`/api/v1/admin/profile/update/${id}`, userData, config)
-
+        console.log(data)
         dispatch({
             type: UPDATE_USER_SUCCESS,
             payload: data.success
         })
-
+       
     } catch (error) {
         dispatch({
             type: UPDATE_USER_FAIL,
             payload: error.response.data.message
         })
+       
     }
 }
 

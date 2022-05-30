@@ -20,6 +20,7 @@ const NewProduct = () => {
     const [imagesPreview, setImagesPreview] = useState([])
     let navigate=useNavigate();
     const categories = [
+        'Select Category',
         'Electronics',
         'Cameras',
         'Laptops',
@@ -160,7 +161,7 @@ const NewProduct = () => {
                                         type="text"
                                         id="seller_field"
                                         className="form-control"
-                                        value={user.name}
+                                        value={seller}
                                         onChange={(e) => setSeller(e.target.value)}
                                     />
                                 </div>

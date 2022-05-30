@@ -57,7 +57,7 @@ const Register = ( ) => {
         
         const reader = new FileReader();
       
-        if ((e.target.name === 'avatar') !==null ) {
+        if ((e.target.name === 'avatar') ) {
         
           reader.onload = () => {
               if (reader.readyState === 2) {

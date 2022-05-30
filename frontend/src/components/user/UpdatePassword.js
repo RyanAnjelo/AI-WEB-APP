@@ -4,15 +4,20 @@ import {useAlert} from 'react-alert'
 import MetaData from '../layouts/MetaData'
 
 import {updatePassword, clearErrors} from '../../actions/users'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { UPDATE_PASSWORD_RESET } from '../../constants/user'
  
 
 const UpdatePassword = () => {
     
     
-    const [oldPassword, setOldPassword] = useState('')
-    const [password, setPassword] = useState('')
+   // const [oldPassword, setOldPassword] = useState('')
+    //const [password, setPassword] = useState('')
+
+    const initialValues = { email: "", password: "",name:""};
+    const [formValues, setFormValues] = useState(initialValues);
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
    
     const alert = useAlert();
     const dispatch = useDispatch();
@@ -36,17 +41,38 @@ const UpdatePassword = () => {
             })
         }
 
-    }, [dispatch, alert, error, navigate, isUpdated])
+    }, [dispatch, alert, error, navigate, isUpdated,formErrors,formValues,isSubmit])
 
     const submitHandler = (e) => {
         e.preventDefault();
-
+        setFormErrors(validate(formValues));
+        setIsSubmit(true);
         const formData = new FormData();
-        formData.set('oldPassword', oldPassword);
-        formData.set('password', password);
+        formData.set('oldPassword', formValues.oldPassword);
+        formData.set('password', formValues.password);
 
         dispatch(updatePassword(formData))
     }
+
+     //method to handle validation of user
+    const validate = (values) => {
+    const errors = {};
+    if (!values.password || !values.oldPassword) {
+      errors.password = "Password is required";
+    } else if (values.password.length < 4 || values.oldPassword.length < 4 ) {
+      errors.password = "Password must be more than 4 characters";
+    } else if (values.password.length > 20 || values.oldPassword.length < 4 ) {
+      errors.password = "Password cannot exceed more than 20 characters";
+    }
+    return errors;
+  };
+
+ const onChange = e => {
+
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+        
+  }
 
     return (
         <Fragment>
@@ -62,8 +88,9 @@ const UpdatePassword = () => {
                                 type="password"
                                 id="old_password_field"
                                 className="form-control"
-                                value={oldPassword}
-                                onChange={(e) => setOldPassword(e.target.value)}
+                                name='oldPassword'
+                                value={formValues.oldPassword}
+                                onChange={onChange}
                             />
                         </div>
 
@@ -73,8 +100,9 @@ const UpdatePassword = () => {
                                 type="password"
                                 id="new_password_field"
                                 className="form-control"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                name='password'
+                                value={formValues.password}
+                                onChange={onChange}
                             />
                         </div>
                         <button type="submit" className="btn update-btn btn-block mt-4 mb-3" disabled={loading ? true : false} >Update Password</button>

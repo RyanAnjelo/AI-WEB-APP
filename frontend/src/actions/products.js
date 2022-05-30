@@ -35,13 +35,17 @@ import {
     export const getProducts = (keyword="",currentPage=1,price,category,rating = 0) => async(dispatch) => {
         try{
             dispatch({ type: ALL_PRODUCTS_REQUEST })
-            let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`;
+            let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&ratings[gte]=${rating}`;
            
             if (category) {
                 link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}&ratings[gte]=${rating}`
             }
     
            
+        // product recommendation
+    
+
+
             const {data} = await axios.get(link)//get data from the url 
             dispatch({
                 type:ALL_PRODUCTS_SUCCESS,
@@ -189,7 +193,7 @@ export const deleteProduct = (id) => async (dispatch) => {
         dispatch({ type: DELETE_PRODUCT_REQUEST })
 
         const { data } = await axios.delete(`/api/v1/admin/product/${id}`)
-
+        console.log(data.success);
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,
             payload: data.success
@@ -222,7 +226,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
             type: UPDATE_PRODUCT_SUCCESS,
             payload: data.success
         })
-         
+         console.log(data.success)
     } catch (error) {
         dispatch({
             type: UPDATE_PRODUCT_FAIL,

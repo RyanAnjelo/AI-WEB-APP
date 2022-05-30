@@ -39,12 +39,17 @@ const order = require('./routes/orders');
 
 
 
+require('./routes/dialogFlowRoutes')(app);
+require('./routes/fulfillmentRoutes')(app);
 
 //defines the api route to follow 
 app.use('/api/v1', products)
 app.use('/api/v1', auth)
 app.use('/api/v1', payment)
 app.use('/api/v1', order)
+
+
+
 
 
 // Middleware to handle errors
