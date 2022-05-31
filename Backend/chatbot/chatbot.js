@@ -2,7 +2,7 @@
 const dialogflow = require('dialogflow');
 const structjson = require('./structjson.js');
 //const config = require('../config/keys');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 
 const googleAuth = require('google-oauth-jwt');
 
