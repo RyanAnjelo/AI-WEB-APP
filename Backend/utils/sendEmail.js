@@ -1,9 +1,19 @@
 const nodemailer = require('nodemailer');
+var sgTransport = require('nodemailer-sendgrid-transport');
+
+
+var options = {
+  auth: {
+    api_user: 'SENDGRID_USERNAME',
+    api_key: 'SENDGRID_PASSWORD'
+  }
+}
+
 
 const sendEmail = async options => {
     const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: process.env.SMTP_PORT,
+       // host: process.env.SMTP_HOST,
+       // port: process.env.SMTP_PORT,
         auth: {
             user: process.env.SMTP_EMAIL,
             pass: process.env.SMTP_PASSWORD

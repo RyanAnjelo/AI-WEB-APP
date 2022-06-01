@@ -10,7 +10,7 @@
     "seeder": "node Backend/utils/seeder.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
   },
-  "author": "",
+  "author": "Ryan",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -34,6 +34,7 @@
     "mongoose": "^5.13.8",
     "monk": "^7.3.2",
     "nodemailer": "^6.7.2",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "path": "^0.12.7",
     "pb-util": "^1.0.3",
     "stripe": "^8.214.0",

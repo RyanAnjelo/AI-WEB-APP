@@ -8,4 +8,5 @@ mongoose.connect(process.env.DB_URI,{
     console.log(`Database sucessfully connected with HOST: ${con.connection.host}`);
 })
 }
-module.exports=connectDatabase
+module.exports = connectDatabase     
+
